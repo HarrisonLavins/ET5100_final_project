@@ -18,7 +18,7 @@ void setup() {
   pinMode(in4, OUTPUT);
 }
 
-void demoTwo(){
+void motorThrottleTest(){
   // this function will run the motors across the range of possible speeds
   // Note: maximum speed is determined by the motor itself and the operating voltage
   // the PWM values sent my the analogWrite() are fractions of the maximum speed possible by hardware
@@ -51,5 +51,5 @@ void demoTwo(){
 
 void loop() {
   // test motors through their speed range
-  demoTwo();
+  motorThrottleTest();
 }
