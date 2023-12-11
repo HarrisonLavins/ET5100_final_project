@@ -5,6 +5,8 @@ A final project mechatronics project in fulfillment of the requirements for ET 5
 A teleoperated mechanum-wheeled robot which demonstrates an automatic emergency braking (AEB) collision mitigation system using ultrasonic sensors.
 
 ## System Requirements
+- The system shall include at least one sensor.
+- The system shall include at least one actuator.
 - The system shall allow an operator to wirelessly teleoperate the vehicle indoors from a distance of no less than 10m.
 - The system shall be able to operate on battery power alone for a period of no less than 30 minutes.
 - The system shall have a top forward drive speed of no less than 0.5 m/s.
