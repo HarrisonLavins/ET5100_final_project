@@ -1,55 +1,62 @@
 // connect motor controller pins to Arduino digital pins
-// motor one
-int enA = 10;
-int in1 = 9;
-int in2 = 8;
-// motor two
-int enB = 5;
-int in3 = 7;
-int in4 = 6;
+// motor one - Left Rear
+int enA = 11; // PWM pin
+int LR_pos = 13;
+int LR_neg = 12;
+// motor two - Right Rear
+int enB = 10; // PWM pin
+int RR_neg = 9;
+int RR_pos = 8;
 
 void setup() {
   // set all the motor control pins to outputs
   pinMode(enA, OUTPUT);
   pinMode(enB, OUTPUT);
-  pinMode(in1, OUTPUT);
-  pinMode(in2, OUTPUT);
-  pinMode(in3, OUTPUT);
-  pinMode(in4, OUTPUT);
+  pinMode(LR_pos, OUTPUT);
+  pinMode(LR_neg, OUTPUT);
+  pinMode(RR_neg, OUTPUT);
+  pinMode(RR_pos, OUTPUT);
 }
 
-void motorThrottleTest(){
-  // this function will run the motors across the range of possible speeds
-  // Note: maximum speed is determined by the motor itself and the operating voltage
-  // the PWM values sent my the analogWrite() are fractions of the maximum speed possible by hardware
+void forward() {
+ //turn on motor A
+  digitalWrite(LR_pos, HIGH);
+  digitalWrite(LR_neg, LOW);
+  analogWrite(enA, 200);   //set speed to 200 out of possible range 0-255
 
-  // turn on motors
-  digitalWrite(in1, LOW);
-  digitalWrite(in2, HIGH);
-  digitalWrite(in3, LOW);
-  digitalWrite(in4, HIGH);
-  // accelerate from zero to maximum speed
-  for (int i = 0; i < 256; i++)
-  {
-    analogWrite(enA, i);
-    analogWrite(enB, i);
-    delay(20);
-  }
-  // decelerate from maximum speed to zero
-  for (int i = 255; i >= 0; --i)
-  {
-    analogWrite(enA, i);
-    analogWrite(enB, i);
-    delay(20);
-  }
-  // turn off motors
-  digitalWrite(in1, LOW);
-  digitalWrite(in2, LOW);
-  digitalWrite(in3, LOW);
-  digitalWrite(in4, LOW);
+  //turn on motor B
+  digitalWrite(RR_neg, LOW);
+  digitalWrite(RR_pos, HIGH);
+  analogWrite(enB, 200);   // set speed to 200 out of possible range 0-255
 }
+
+void reverse() {
+ digitalWrite(LR_pos, LOW);
+  digitalWrite(LR_neg, HIGH);
+  digitalWrite(RR_neg, HIGH);
+  digitalWrite(RR_pos, LOW);
+}
+
+void run() 
+{
+  //this function will run the motors in both directions at a fixed speed
+  forward();
+  delay(2000);
+
+  //now change motor directions
+  reverse();
+  delay(2000);
+
+//now turn off motors
+  digitalWrite(LR_pos, LOW);
+  digitalWrite(LR_neg, LOW);
+  digitalWrite(RR_neg, LOW);
+  digitalWrite(RR_pos, LOW);
+
+}
+
 
 void loop() {
-  // test motors through their speed range
-  motorThrottleTest();
+  // test motors 
+  run();
 }
