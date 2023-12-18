@@ -1,35 +1,35 @@
 // connect motor controller pins to Arduino digital pins
 // motor one - Left Front
-int enA = 11; // PWM pin
-int LF_pos = 13;
-int LF_neg = 12;
+int enA = 3; // PWM pin
+int LF_pos = 2;
+int LF_neg = 4;
 // motor two - Right Front
-int enB = 10; // PWM pin
-int RF_neg = 9;
-int RF_pos = 8;
+int enB = 6; // PWM pin
+int RF_neg = 7;
+int RF_pos = 5;
 
 // motor three - Right Rear
-int enC = 6;  // PWM pin
-int RR_pos = 7;
-int RR_neg = 5;
+// int enC = 6;  // PWM pin
+// int RR_pos = 7;
+// int RR_neg = 5;
 
-// motor four - Left Rear
-int enD = 3; // PWM pin
-int LR_pos = 2; 
-int LR_neg = 4;
+// // motor four - Left Rear
+// int enD = 3; // PWM pin
+// int LR_pos = 2; 
+// int LR_neg = 4;
 
 
 void setup() {
   // set all the motor control pins to outputs
   pinMode(enA, OUTPUT);
   pinMode(enB, OUTPUT);
-  pinMode(enC, OUTPUT);
-  pinMode(enD, OUTPUT);
+  // pinMode(enC, OUTPUT);
+  // pinMode(enD, OUTPUT);
 
-  pinMode(LR_pos, OUTPUT);
-  pinMode(LR_neg, OUTPUT);
-  pinMode(RR_neg, OUTPUT);
-  pinMode(RR_pos, OUTPUT);
+  // pinMode(LR_pos, OUTPUT);
+  // pinMode(LR_neg, OUTPUT);
+  // pinMode(RR_neg, OUTPUT);
+  // pinMode(RR_pos, OUTPUT);
 
   pinMode(LF_pos, OUTPUT);
   pinMode(LF_neg, OUTPUT);
@@ -39,14 +39,14 @@ void setup() {
 
 void forward() {
  //turn on motor A
-  digitalWrite(LR_pos, HIGH);
-  digitalWrite(LR_neg, LOW);
-  analogWrite(enA, 200);   //set speed to 200 out of possible range 0-255
+  // digitalWrite(LR_pos, HIGH);
+  // digitalWrite(LR_neg, LOW);
+  // analogWrite(enD, 200);   //set speed to 200 out of possible range 0-255
 
-  //turn on motor B
-  digitalWrite(RR_neg, LOW);
-  digitalWrite(RR_pos, HIGH);
-  analogWrite(enB, 200);   // set speed to 200 out of possible range 0-255
+  // //turn on motor B
+  // digitalWrite(RR_neg, LOW);
+  // digitalWrite(RR_pos, HIGH);
+  // analogWrite(enC, 200);   // set speed to 200 out of possible range 0-255
 
   //turn on motor C
   digitalWrite(LF_pos, HIGH);
@@ -60,14 +60,13 @@ void forward() {
 }
 
 void reverse() {
-  digitalWrite(LR_pos, LOW);
-  digitalWrite(LR_neg, HIGH);
-  digitalWrite(RR_neg, HIGH);
-  digitalWrite(RR_pos, LOW);
+  // digitalWrite(LR_pos, LOW);
+  // digitalWrite(LR_neg, HIGH);
+  // digitalWrite(RR_neg, HIGH);
+  // digitalWrite(RR_pos, LOW);
 
   digitalWrite(LF_pos, LOW);
   digitalWrite(LF_neg, HIGH);
-
   digitalWrite(RF_neg, LOW);
   digitalWrite(RF_pos, HIGH);
 }
@@ -83,10 +82,10 @@ void run()
   delay(2000);
 
 //now turn off motors
-  digitalWrite(LR_pos, LOW); //rear
-  digitalWrite(LR_neg, LOW);
-  digitalWrite(RR_neg, LOW);
-  digitalWrite(RR_pos, LOW);
+  // digitalWrite(LR_pos, LOW); //rear
+  // digitalWrite(LR_neg, LOW);
+  // digitalWrite(RR_neg, LOW);
+  // digitalWrite(RR_pos, LOW);
 
   digitalWrite(LF_pos, LOW); //front
   digitalWrite(LF_neg, LOW);
