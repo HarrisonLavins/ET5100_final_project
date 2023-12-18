@@ -1,22 +1,22 @@
 // connect motor controller pins to Arduino digital pins
-// motor one - Left Rear
+// motor one - Left Front
 int enA = 11; // PWM pin
-int LR_pos = 13;
-int LR_neg = 12;
-// motor two - Right Rear
+int LF_pos = 13;
+int LF_neg = 12;
+// motor two - Right Front
 int enB = 10; // PWM pin
-int RR_neg = 9;
-int RR_pos = 8;
+int RF_neg = 9;
+int RF_pos = 8;
 
-// motor three - Right Front
+// motor three - Right Rear
 int enC = 6;  // PWM pin
-int RF_pos = 7;
-int RF_neg = 5;
+int RR_pos = 7;
+int RR_neg = 5;
 
-// motor four - Left Front
+// motor four - Left Rear
 int enD = 3; // PWM pin
-int LF_pos = 2; 
-int LF_neg = 4;
+int LR_pos = 2; 
+int LR_neg = 4;
 
 
 void setup() {
@@ -30,6 +30,7 @@ void setup() {
   pinMode(LR_neg, OUTPUT);
   pinMode(RR_neg, OUTPUT);
   pinMode(RR_pos, OUTPUT);
+
   pinMode(LF_pos, OUTPUT);
   pinMode(LF_neg, OUTPUT);
   pinMode(RF_neg, OUTPUT);
@@ -50,12 +51,12 @@ void forward() {
   //turn on motor C
   digitalWrite(LF_pos, HIGH);
   digitalWrite(LF_neg, LOW);
-  analogWrite(enC, 200);   //set speed to 200 out of possible range 0-255
+  analogWrite(enA, 200);   //set speed to 200 out of possible range 0-255
 
   //turn on motor D
-  digitalWrite(RF_neg, LOW);
-  digitalWrite(RF_pos, HIGH);
-  analogWrite(enD, 200);   // set speed to 200 out of possible range 0-255
+  digitalWrite(RF_neg, HIGH);
+  digitalWrite(RF_pos, LOW);
+  analogWrite(enB, 200);   // set speed to 200 out of possible range 0-255
 }
 
 void reverse() {
@@ -66,8 +67,9 @@ void reverse() {
 
   digitalWrite(LF_pos, LOW);
   digitalWrite(LF_neg, HIGH);
-  digitalWrite(RF_neg, HIGH);
-  digitalWrite(RF_pos, LOW);
+
+  digitalWrite(RF_neg, LOW);
+  digitalWrite(RF_pos, HIGH);
 }
 
 void run() 
